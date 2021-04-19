@@ -1,9 +1,9 @@
 name: CI - G3000 Full Release
 on: workflow_dispatch
-  push:
-    tags: 
-      - 'g3000-v*'
-      - '!g3000-v*-pre*'
+  #push:
+  #  tags: 
+  #    - 'g3000-v*'
+  #    - '!g3000-v*-pre*'
 jobs:
   build:
     runs-on: windows-latest
