@@ -1,30 +1,27 @@
-# Working Title CJ4 v0.11.3
-Welcome to the Working Title CJ4 v0.11.3. Bug fixes! This release is all about working through some backlogged bug fixes.
+# Working Title CJ4 v0.12.1
+Welcome to the Working Title CJ4 v0.12.1. This version brings a boatload of bug fixes and tweaks, including a new custom vertical autopilot that has allowed us to add altitude capture for PTCH mode, TO/GA modes and improve the altitude capture mechanics of the autopilot.
 
 ## READ THE GUIDE
 Please, please, please read the guide for instructions on using features. A lot of hard work went into writing the guide and the Discord channels are clogged with questions that are readily answered in the guide.
+
+GUIDE: https://docs.google.com/document/d/1qzxPMTSQRkvau8QOi7xUqNvjx9rbww_qHlso5AT5OnI
 
 ## Installation
 Installation is easy, simply copy the `workingtitle-aircraft-cj4` folder inside the zip file to your MSFS Community folder. 
 
 **Important: We recommend that you fully delete the previous `workingtitle-aircraft-cj4` folder before copying this release.**
 
-## Charts Integration
-Charts in the CJ4 are powered by Navigraph - special thanks to the team at Navigraph for their support with API integration. In order to use the charts in the CJ4, you need to have a subscription that includes charts - https://navigraph.com/products/subscriptions. If you have a subscription, all you need to do is select the NAVIGRAPH line in MOD SETTINGS in the FMC and that will launch your web browser and ask you to log in to your Navigraph account - from there an access token will be issued. These tokens do time out from time-to-time, so if you're prompted by the aircraft, or if you ever encounter difficulties loading charts, please go back to this option and resync your account. Details on using the Charts capabilities are in the user guide.
-
-Please note that occasionally the Navigraph token can time out; this especially happens if you do not exit the sim via the main menu. If that happens, please use MOD SETTINGS to refresh your Navigraph token and make a change to your flight plan, such as going DIRECT TO your current active waypoint - this will refresh the chart link.
-
 # Changes
-- Fixed bug with Pilot Waypoint storage that could cause errors for users adding waypoints to the data store for the first time
-- Fixed missing STAR transition legs when selecting a VFR runway for landing instead of a published approach
-- Fixed a bug with the autopilot update loop that could occasionally cause LNAV or VNAV to stop responding
-- Made adjustments to LNAV turn anticipation in certain turn types
-- Fixed bug that prevented the correct hold entry type from being updated when changing inbound course and turn direction
-- Fixed bug where AP dives to pre-select altitude when VNAV is disabled while in PATH mode
-- Fix behavior when a flight plan change causes PATH recalculation while in PATH mode - will now go to ALT and attempt to re-arm PATH
+
+- Fixed bugs with parsing TUN page inputs.
+- Minor cleanup on DSPL MENU FMC page.
+- Fixed bugs with leg altitude (constraint) parsing to address some incorrect constraints in some European approaches.
+- Fix for erroneous sim autopilot altitude capture when using a hardware button tied to all the altitude slots and not just slot 1.
+- Fix for some erroneous situations where VNAV PATH kicks you to PTCH incorrectly.
+- Fix for sequencing missed approach on Go-Around after a new approach is selected.
 
 ## ⚠️ Known Issues
-* PTCH mode will not level off at an altitude and it can have some quirky behaviors.  This is currently a sim AP issue.
+* In the latest versions of Navigraph data, some "lettered" or non-runway-specific approaches now appear as something like RNAV A - 00 and do not allow the selection of a landing runway, preventing using the Approach Refs page - this is something we will be working to address in the future.
 * Some external applications that use the GPS/Flight plan SimVars may not function correctly or as expected when FP Sync is off.
 * Loading and saving flights can have bad results.
 * Custom liveries can render FADEC inoperative if they ship with a panel.cfg. Painters should reference the new [REPAINT_README.md](https://github.com/Working-Title-MSFS-Mods/fspackages/blob/main/docs/workingtitle-cj4/REPAINT_README.md) file included in the docs folder of the Github repository.

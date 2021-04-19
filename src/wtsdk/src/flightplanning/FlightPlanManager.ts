@@ -897,8 +897,17 @@ export class FlightPlanManager {
    * @param index The index of the runway in the origin airport runway information.
    * @param callback A callback to call when the operation completes.
    */
-  public async setDepartureRunwayIndex(index: number, callback = EmptyCallback.Void): Promise<void> {
+   public async setDepartureRunwayIndex(index: number, callback = EmptyCallback.Void): Promise<void> {
     const currentFlightPlan = this._flightPlans[this._currentFlightPlanIndex];
+
+    if(currentFlightPlan.procedureDetails.departureIndex > -1 && index > -1){
+      const apt = currentFlightPlan.originAirfield.infos as AirportInfo;      
+      const rwyTrans = apt.departures[currentFlightPlan.procedureDetails.departureIndex].runwayTransitions 
+      if(rwyTrans !== undefined && rwyTrans.length-1 < index){
+        callback();
+        return;
+      }
+    }
 
     if (currentFlightPlan.procedureDetails.departureRunwayIndex !== index) {
       currentFlightPlan.procedureDetails.departureRunwayIndex = index;
@@ -1259,9 +1268,10 @@ export class FlightPlanManager {
 
   /**
    * Gets the approach waypoints for the current flight plan.
+   * @param fpIndex The flight plan index.
    */
-  public getApproachWaypoints(): WayPoint[] {
-    return this._flightPlans[this._currentFlightPlanIndex].approach.waypoints;
+  public getApproachWaypoints(fpIndex = this._currentFlightPlanIndex): WayPoint[] {
+    return this._flightPlans[fpIndex].approach.waypoints;
   }
 
   /**

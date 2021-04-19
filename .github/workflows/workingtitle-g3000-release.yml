@@ -1,5 +1,5 @@
 name: CI - G3000 Full Release
-on:
+on: workflow_dispatch
   push:
     tags: 
       - 'g3000-v*'
